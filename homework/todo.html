@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>오늘의 투두</title>
+  </head>
+  <body>
+    <style>
+      #title {
+        color: blue;
+        text-decoration: underline;
+      }
+
+      .wrap {
+        display: flex;
+        align-items: center;
+      }
+      .todo-card {
+        border: 1px solid gray;
+        border-radius: 5px;
+        padding: 2em;
+        margin: 1em;
+        flex: 1 1 0;
+      }
+      button {
+        width: 100px;
+      }
+
+      button:hover {
+        background-color: beige;
+      }
+    </style>
+
+    <h1 id="title">오늘 할 일</h1>
+    <div class="wrap">
+      <div class="card-list"></div>
+
+      <div class="add">
+        <input id="add-input" />
+        <button onClick="addCard()">추가하기</button>
+      </div>
+    </div>
+
+    <script>
+      function completeTodo(e) {
+        console.log(e.target);
+        console.log(e.target.parentElement);
+        e.target.parentElement.style.backgroundColor = "green";
+      }
+
+      function addCard() {
+        const new_todo = document.createElement("div");
+        new_todo.className = "todo-card";
+        const title = document.createElement("h3");
+        title.textContent = document.getElementById("add-input").value;
+        const button = document.createElement("button");
+        button.textContent = "완료";
+        button.addEventListener("click", completeTodo);
+        new_todo.appendChild(title);
+        new_todo.appendChild(button);
+        document.getElementsByClassName("card-list")[0].appendChild(new_todo);
+      }
+    </script>
+  </body>
+</html>

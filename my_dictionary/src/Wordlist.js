@@ -2,31 +2,38 @@ import React from "react";
 
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { loadWordFB } from "./redux/modules/word";
 
 const Wordlist = (props) => {
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const word_list = useSelector((state) => state.word.list);
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#d5ffce",
+        width: "400px",
+        height: "90vh",
+        display: "flex",
+        flexDirection: "column",
+        padding: "30px",
+        justifyContent: "center",
+        margin: "auto",
+        borderRadius: "15px",
+        position: "relative",
+      }}
+    >
+      <div>
+        <h1>MY DICTIONARY</h1>
+      </div>
       <div
         style={{
-          backgroundColor: "#d5ffce",
-          width: "400px",
-          height: "90vh",
-          display: "flex",
-          flexDirection: "column",
-          padding: "30px",
-          justifyContent: "center",
-          margin: "auto",
-          borderRadius: "15px",
+          height: "80vh",
+          overflow: "auto",
         }}
       >
-        <div>
-          <h1>MY DICTIONARY</h1>
-        </div>
         {word_list.map((wordListItem, index) => {
           return (
             <div
@@ -91,13 +98,31 @@ const Wordlist = (props) => {
         })}
       </div>
 
-      <button
-        onClick={() => {
-          history.push("/word");
+      <div
+        style={{
+          width: "400px",
+          display: "flex",
+          justifyContent: "flex-end",
         }}
       >
-        +
-      </button>
+        <button
+          style={{
+            color: "white",
+            fontSize: "60px",
+            width: "80px",
+            height: "80px",
+            borderRadius: "40px",
+            backgroundColor: "#A1FF93",
+            position: "absolute",
+            bottom: "30px",
+          }}
+          onClick={() => {
+            history.push("/word");
+          }}
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 };

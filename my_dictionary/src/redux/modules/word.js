@@ -1,4 +1,6 @@
 //bucket.js
+import { db } from "../../firebase";
+import { collection, getDoc, getDocs, addDoc } from "firebase/firestore";
 
 // Actions
 const LOAD = "word/LOAD";
@@ -12,20 +14,50 @@ const initialState = {
 };
 
 // Action Creators
-export const loadWord = (wordinfo) => {
-  return { type: LOAD, wordinfo };
+export const loadWord = (word_list) => {
+  return { type: LOAD, word_list };
 };
 
 export const createWord = (wordinfo) => {
   return { type: CREATE, wordinfo };
 };
 
+//middlewares
+export const loadWordFB = () => {
+  return async function (dispatch) {
+    const word_data = await getDocs(collection(db, "word"));
+    console.log(word_data);
+
+    let word_list = [];
+
+    word_data.forEach((b) => {
+      console.log(b.data());
+      word_list.push({ id: b.id, ...b.data() });
+    });
+
+    console.log(word_list);
+    dispatch(loadWord(word_list));
+  };
+};
+
+export const addWordFB = (word) => {
+  return async function (dispatch) {
+    const docRef = await addDoc(collection(db, "word"), word);
+    const _word = await getDoc(docRef);
+    const word_data = { id: _word.id, ..._word.data() };
+
+    console.log(word_data);
+
+    dispatch(createWord(word_data));
+  };
+};
+
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "word/LOAD":
-      if (action.wordinfo.length > 0) {
-        return { list: action.vocab };
+      {
+        return { list: action.word_list };
       }
       return state;
 

@@ -1,8 +1,9 @@
 import { useRef } from "react";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { createWord } from "./redux/modules/word";
+import { createWord, addWordFB } from "./redux/modules/word";
 import { useDispatch } from "react-redux";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 
 const AddWord = () => {
   const wordInput = useRef();
@@ -18,7 +19,14 @@ const AddWord = () => {
       desc: descInput.current.value,
       example: exampleInput.current.value,
     };
-    dispatch(createWord(new_list_state));
+    // dispatch(createWord(new_list_state));
+    // // const docREf = await addDoc(collection(db, "word"), {
+    // //   word: wordInput.current.value,
+    // //   desc: descInput.current.value,
+    // //   example: exampleInput.current.value,
+    // // });
+    dispatch(addWordFB(new_list_state));
+    console.log("1");
     history.goBack();
   };
 

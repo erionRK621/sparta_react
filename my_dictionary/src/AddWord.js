@@ -35,7 +35,7 @@ const AddWord = () => {
       style={{
         backgroundColor: "#d5ffce",
         width: "400px",
-        height: "100vh",
+        height: "90vh",
         display: "flex",
         flexDirection: "column",
         padding: "30px",

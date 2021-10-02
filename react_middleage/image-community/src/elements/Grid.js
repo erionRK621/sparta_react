@@ -5,11 +5,11 @@ const Grid = (props) => {
   const { is_flex, width, margin, padding, bg, children } = props;
 
   const styles = {
-    is_flex: is_flex,
-    width: width,
-    margin: margin,
-    padding: padding,
-    bg: bg,
+      is_flex: is_flex,
+      width: width,
+      margin: margin,
+      padding: padding,
+      bg: bg,
   };
   return (
     <React.Fragment>

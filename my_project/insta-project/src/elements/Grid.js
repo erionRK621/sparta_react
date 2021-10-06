@@ -5,11 +5,11 @@ const Grid = (props) => {
   const { is_flex, width, margin, padding, bg, children } = props;
 
   const styles = {
-    is_flex: is_flex,
-    width: width,
-    margin: margin,
-    padding: padding,
-    bg: bg,
+      is_flex: is_flex,
+      width: width,
+      margin: margin,
+      padding: padding,
+      bg: bg,
   };
   return (
     <React.Fragment>
@@ -18,7 +18,6 @@ const Grid = (props) => {
   );
 };
 
-//is_flex 플렉스인지 아닌지. 패딩마진 있으면 props로 받아올건데 일단 false
 Grid.defaultProps = {
   chidren: null,
   is_flex: false,
@@ -28,7 +27,6 @@ Grid.defaultProps = {
   bg: false,
 };
 
-//width=> props 받아올 때 이런식으로.  패딩=> 상황따라 삼항연산자
 const GridBox = styled.div`
   width: ${(props) => props.width};
   height: 100%;

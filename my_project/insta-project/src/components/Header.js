@@ -4,17 +4,21 @@ import { getCookie, deleteCookie } from "../shared/Cookie";
 
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { history } from "../redux/configureStore";
 
-import { apiKey } from "../../shared/firebase";
+import { history } from "../redux/configureStore";
+import { apiKey } from "../shared/firebase";
 
 const Header = (props) => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const is_login = useSelector((state) => state.user.is_login);
 
   const _session_key = `firebase:authUser:${apiKey}:[DEFAULT]`;
 
-  if (is_login) {
+  const is_session = sessionStorage.getItem(_session_key)? true : false;
+  
+  console.log(is_session);
+
+  if (is_login && is_session) {
     return (
       <React.Fragment>
         <Grid is_flex padding="4px 16px">
@@ -30,7 +34,7 @@ const Header = (props) => {
             <Button
               text="로그아웃"
               _onClick={() => {
-                dispatch(userActions.logOut({}));
+                dispatch(userActions.logoutFB());
               }}
             ></Button>
           </Grid>
@@ -38,6 +42,7 @@ const Header = (props) => {
       </React.Fragment>
     );
   }
+
   return (
     <React.Fragment>
       <Grid is_flex padding="4px 16px">

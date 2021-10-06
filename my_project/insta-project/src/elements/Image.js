@@ -30,7 +30,6 @@ Image.defaultProps = {
   size: 36,
 };
 
-//반응형 사이즈를 위해 div 두개 만듦
 const AspectOutter = styled.div`
   width: 100%;
   min-width: 250px;
@@ -44,7 +43,6 @@ const AspectInner = styled.div`
   background-size: cover;
 `;
 
-//--size라는 변수 생성(반복 귀찮아서)
 const ImageCircle = styled.div`
   --size: ${(props) => props.size}px;
   width: var(--size);

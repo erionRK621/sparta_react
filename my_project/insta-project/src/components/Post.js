@@ -9,10 +9,14 @@ const Post = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <Grid is_flex>
-          <Image shape="circle" src={props.src} />
-          <Text bold>{props.user_info.user_name}</Text>
-          <Text>{props.insert_dt}</Text>
+        <Grid is_flex padding="16px">
+          <Grid is_flex width="auto">
+            <Image shape="circle" src={props.src} />
+            <Text bold>{props.user_info.user_name}</Text>
+          </Grid>
+          <Grid is_flex width="auto">
+            <Text>{props.insert_dt}</Text>
+          </Grid>
         </Grid>
         <Grid padding="16px">
           <Text>{props.contents}</Text>
@@ -21,7 +25,9 @@ const Post = (props) => {
           <Image shape="rectangle" src={props.src} />
         </Grid>
         <Grid padding="16px">
-          <Text bold>댓글 {props.comment_cnt}개</Text>
+          <Text margin="0px" bold>
+            댓글 {props.comment_cnt}개
+          </Text>
         </Grid>
       </Grid>
     </React.Fragment>
@@ -30,7 +36,7 @@ const Post = (props) => {
 
 Post.defaultProps = {
   user_info: {
-    user_name: "joon",
+    user_name: "mean0",
     user_profile:
       "https://s3.ap-northeast-2.amazonaws.com/erionrookie.shop/rookie.png",
   },
@@ -38,7 +44,7 @@ Post.defaultProps = {
     "https://s3.ap-northeast-2.amazonaws.com/erionrookie.shop/rookie.png",
   contents: "강아지네요!",
   comment_cnt: 10,
-  insert_dt: "2021-10-02 10:00:00",
+  insert_dt: "2021-02-27 10:00:00",
 };
 
 export default Post;
